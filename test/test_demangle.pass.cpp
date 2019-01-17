@@ -29755,6 +29755,10 @@ const char* cases[][2] =
     {"_Z1fIJR1SS0_EEiDpOT_", "int f<S&, S>(S&, S&&)"},
 
     {"___Z3foo_block_invoke.25", "invocation function for block in foo"},
+
+    // Darwin adds leading underscores to symbols, just demangle them anyways.
+    {"____Z3foo_block_invoke.25", "invocation function for block in foo"},
+    {"__Z1fv", "f()"},
 };
 
 const unsigned N = sizeof(cases) / sizeof(cases[0]);
