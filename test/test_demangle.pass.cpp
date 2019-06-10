@@ -29765,7 +29765,10 @@ const char* cases[][2] =
     {"____Z3foo_block_invoke.25", "invocation function for block in foo"},
     {"__Z1fv", "f()"},
 
-    {"_Z2tfIZUb_E1SEiv", "int tf<'block-literal'::S>()"}
+    {"_Z2tfIZUb_E1SEiv", "int tf<'block-literal'::S>()"},
+
+    // Vendor extension types are substitution candidates.
+    {"_Z1fu3fooS_", "f(foo, foo)"},
 };
 
 const unsigned N = sizeof(cases) / sizeof(cases[0]);
