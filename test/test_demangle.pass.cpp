@@ -29769,6 +29769,9 @@ const char* cases[][2] =
 
     // Vendor extension types are substitution candidates.
     {"_Z1fu3fooS_", "f(foo, foo)"},
+
+    {"_ZN3FooIXu8__uuidofzdeL_Z3sucEEEC1Ev", "Foo<__uuidof(*(suc))>::Foo()"},
+    {"_ZN3FooIXu8__uuidoft13SomeUUIDClassEEC1Ev", "Foo<__uuidof(SomeUUIDClass)>::Foo()"},
 };
 
 const unsigned N = sizeof(cases) / sizeof(cases[0]);
