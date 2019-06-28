@@ -29772,6 +29772,9 @@ const char* cases[][2] =
 
     {"_ZN3FooIXu8__uuidofzdeL_Z3sucEEEC1Ev", "Foo<__uuidof(*(suc))>::Foo()"},
     {"_ZN3FooIXu8__uuidoft13SomeUUIDClassEEC1Ev", "Foo<__uuidof(SomeUUIDClass)>::Foo()"},
+
+    // C++2a char8_t:
+    {"_ZTSPDu", "typeinfo name for char8_t*"},
 };
 
 const unsigned N = sizeof(cases) / sizeof(cases[0]);
