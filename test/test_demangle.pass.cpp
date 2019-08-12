@@ -6,7 +6,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "support/timer.hpp"
+#include "support/timer.h"
 #include <iostream>
 #include <string>
 #include <cstdlib>
