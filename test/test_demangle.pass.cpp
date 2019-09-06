@@ -29582,8 +29582,8 @@ const char* cases[][2] =
     {"_ZSteqIcEN9__gnu_cxx11__enable_ifIXsr9__is_charIT_EE7__valueEbE6__typeERKSbIS2_St11char_traitsIS2_ESaIS2_EESA_", "__gnu_cxx::__enable_if<__is_char<char>::__value, bool>::__type std::operator==<char>(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)"},
     {"_ZZ10+[Foo bar]E3Baz", "+[Foo bar]::Baz"},
     {"_ZN9__gnu_cxx17__normal_iteratorIPKSt4pairISsbESt6vectorIS2_SaIS2_EEEC5ERKS4_", "__gnu_cxx::__normal_iterator<std::pair<std::string, bool> const*, std::vector<std::pair<std::string, bool>, std::allocator<std::pair<std::string, bool> > > >::__normal_iterator(std::pair<std::string, bool> const* const&)"},
-    {"_Z1fIiEDTeqfp_LDnEEPT_", "decltype((fp) == (std::nullptr_t)) f<int>(int*)"},
-    {"_Z1fIiEDTeqfp1_LDnEEicPT_", "decltype((fp1) == (std::nullptr_t)) f<int>(int, char, int*)"},
+    {"_Z1fIiEDTeqfp_LDnEEPT_", "decltype((fp) == (nullptr)) f<int>(int*)"},
+    {"_Z1fIiEDTeqfp1_LDnEEicPT_", "decltype((fp1) == (nullptr)) f<int>(int, char, int*)"},
     {"_ZZN1S1fEiiEd0_NKUlvE_clEv", "S::f(int, int)::'lambda'()::operator()() const"},
     {"_Z3fooPM2ABi", "foo(int AB::**)"},
     {"_Z1rM1GFivEMS_KFivES_M1HFivES1_4whatIKS_E5what2IS8_ES3_", "r(int (G::*)(), int (G::*)() const, G, int (H::*)(), int (G::*)(), what<G const>, what2<G const>, int (G::*)() const)"},
@@ -29668,6 +29668,10 @@ const char* cases[][2] =
     {"_ZN6test471fINS_1SEEEvPTsNT_1cE", "void test47::f<test47::S>(struct test47::S::c*)"},
     {"_ZN6test481fINS_1SEEEvPTuNT_1uE", "void test48::f<test48::S>(union test48::S::u*)"},
     {"_ZN6test451fINS_1SEEEvPTeNT_1eE", "void test45::f<test45::S>(enum test45::S::e*)"},
+
+    // String literals
+    // FIXME: We need to encode the string contents in order to avoid symbol collisions.
+    {"_Z1fIcEvDTcv3StrIT_ELA6_KcEE", "void f<char>(decltype((Str<char>)(\"<char const [6]>\")))"},
 
     // Initializer list expressions
     {"_ZN5test43tf2INS_1XEEEvDTnw_T_piilLi1EEEE", "void test4::tf2<test4::X>(decltype(new test4::X({1})))"},
@@ -29775,6 +29779,12 @@ const char* cases[][2] =
 
     // C++2a char8_t:
     {"_ZTSPDu", "typeinfo name for char8_t*"},
+
+    // C++2a lambda-expressions:
+    {"_ZNK1xMUlTyT_E_clIiEEDaS_", "auto x::'lambda'<typename $T>($T)::operator()<int>(x) const"},
+    {"_ZNK1xMUlTnPA3_ivE_clILS0_0EEEDav", "auto x::'lambda'<int (*$N) [3]>()::operator()<(int [3])0>() const"},
+    {"_ZNK1xMUlTyTtTyTnT_TpTnPA3_TL0__ETpTyvE_clIi1XJfEEEDav", "auto x::'lambda'<typename $T, template<typename $T0, $T $N, $T0 (*...$N0) [3]> typename $TT, typename ...$T1>()::operator()<int, X, float>() const"},
+    {"_ZN1AIiE1fIfEEvDTLZ1AIiEEUlTyTtTyTnTL1__ETL0_1_T_TL0__E_EE", "void A<int>::f<float>(decltype([]<typename $T, template<typename $T0, $T0 $N> typename $TT>($TT, int, $T){...}))"},
 };
 
 const unsigned N = sizeof(cases) / sizeof(cases[0]);
