@@ -29784,9 +29784,14 @@ const char* cases[][2] =
     {"_ZNK1xMUlTyT_E_clIiEEDaS_", "auto x::'lambda'<typename $T>($T)::operator()<int>(x) const"},
     {"_ZNK1xMUlTnPA3_ivE_clILS0_0EEEDav", "auto x::'lambda'<int (*$N) [3]>()::operator()<(int [3])0>() const"},
     {"_ZNK1xMUlTyTtTyTnT_TpTnPA3_TL0__ETpTyvE_clIi1XJfEEEDav", "auto x::'lambda'<typename $T, template<typename $T0, $T $N, $T0 (*...$N0) [3]> typename $TT, typename ...$T1>()::operator()<int, X, float>() const"},
-    {"_ZN1AIiE1fIfEEvDTLUlTyTtTyTnTL1__ETL0_1_T_TL0__E_EE", "void A<int>::f<float>(decltype([]<typename $T, template<typename $T0, $T0 $N> typename $TT>($TT, float, $T){...}))"},
+    {"_ZN1AIiE1fIfEEvDTLUlTyTtTyTnTL1__ETL0_1_T_TL0__E_EE", "void A<int>::f<float>(decltype([]<typename $T, template<typename $T0, $T0 $N> typename $TT>(auto, float, $T){...}))"},
     {"_ZN1S1fILb1EEEv1XILUlvE_EE", "void S::f<true>(X<[](){...}>)"},
     {"_ZN1S1fILb1EEEv1XILUlvE0_EE", "void S::f<true>(X<[](){...}>)"},
+    // FIXME: Consider special-casing the call operator of a lambda and
+    // producing something like
+    //   "auto inline_func()::'lambda'<int, int>(int, int) const"
+    {"_ZZ11inline_funcvENKUlTyTyT_T0_E_clIiiEEDaS_S0_", "auto inline_func()::'lambda'<typename $T, typename $T0>($T, $T0)::operator()<int, int>($T, $T0) const"},
+    {"_ZZ11inline_funcvENKUlTyTyT_T1_T0_E_clIiiiEEDaS_S0_S1_", "auto inline_func()::'lambda'<typename $T, typename $T0>($T, auto, $T0)::operator()<int, int, int>($T, auto, $T0) const"},
 };
 
 const unsigned N = sizeof(cases) / sizeof(cases[0]);
