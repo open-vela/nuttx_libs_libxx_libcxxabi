@@ -29784,7 +29784,9 @@ const char* cases[][2] =
     {"_ZNK1xMUlTyT_E_clIiEEDaS_", "auto x::'lambda'<typename $T>($T)::operator()<int>(x) const"},
     {"_ZNK1xMUlTnPA3_ivE_clILS0_0EEEDav", "auto x::'lambda'<int (*$N) [3]>()::operator()<(int [3])0>() const"},
     {"_ZNK1xMUlTyTtTyTnT_TpTnPA3_TL0__ETpTyvE_clIi1XJfEEEDav", "auto x::'lambda'<typename $T, template<typename $T0, $T $N, $T0 (*...$N0) [3]> typename $TT, typename ...$T1>()::operator()<int, X, float>() const"},
-    {"_ZN1AIiE1fIfEEvDTLZ1AIiEEUlTyTtTyTnTL1__ETL0_1_T_TL0__E_EE", "void A<int>::f<float>(decltype([]<typename $T, template<typename $T0, $T0 $N> typename $TT>($TT, int, $T){...}))"},
+    {"_ZN1AIiE1fIfEEvDTLUlTyTtTyTnTL1__ETL0_1_T_TL0__E_EE", "void A<int>::f<float>(decltype([]<typename $T, template<typename $T0, $T0 $N> typename $TT>($TT, float, $T){...}))"},
+    {"_ZN1S1fILb1EEEv1XILUlvE_EE", "void S::f<true>(X<[](){...}>)"},
+    {"_ZN1S1fILb1EEEv1XILUlvE0_EE", "void S::f<true>(X<[](){...}>)"},
 };
 
 const unsigned N = sizeof(cases) / sizeof(cases[0]);
