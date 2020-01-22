@@ -30022,7 +30022,7 @@ int main()
             std::free(demang);
             break;
         case 1:
-            std::cout << "not immplemented\n";
+            std::cout << "not implemented\n";
             break;
         }
         std::cout << '\n';
