@@ -15,6 +15,8 @@
 
 // Is long double fp80?  (Only x87 extended double has 64-bit mantissa)
 #define LDBL_FP80 (__LDBL_MANT_DIG__ == 64)
+// Is long double fp128?
+#define LDBL_FP128 (__LDBL_MANT_DIG__ == 113)
 
 const char* cases[][2] =
 {
@@ -29836,6 +29838,11 @@ struct FPLiteralCase {
         "void test0::h<float>(char (&) [(unsigned int)((sizeof (float)) + (0x5p+0L))])",
         "void test0::h<float>(char (&) [(unsigned int)((sizeof (float)) + (0xap-1L))])",
     }},
+#endif
+#if LDBL_FP128
+    // This was found by libFuzzer+HWASan on aarch64 Android.
+    {"1\006ILeeeEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
+     {"\x6<-0x1.cecececececececececececececep+11983"}},
 #endif
 };
 const unsigned NF = sizeof(fp_literal_cases) / sizeof(fp_literal_cases[0]);
