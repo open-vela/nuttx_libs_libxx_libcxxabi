@@ -29794,6 +29794,8 @@ const char* cases[][2] =
     {"_ZZ11inline_funcvENKUlTyTyT_T1_T0_E_clIiiiEEDaS_S0_S1_", "auto inline_func()::'lambda'<typename $T, typename $T0>($T, auto, $T0)::operator()<int, int, int>($T, auto, $T0) const"},
 
     {"_Z1fIL4Enumn1EEvv", "void f<(Enum)-1>()"},
+
+    {"_ZN1A1gIiEEDTcldtptfpT1b1fIT_EEEv", "decltype(this->b.f<int>()) A::g<int>()"},
 };
 
 const unsigned N = sizeof(cases) / sizeof(cases[0]);
