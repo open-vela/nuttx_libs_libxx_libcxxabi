@@ -29842,7 +29842,7 @@ struct FPLiteralCase {
 #if LDBL_FP128
     // This was found by libFuzzer+HWASan on aarch64 Android.
     {"1\006ILeeeEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
-     {"\x6<-0x1.cecececececececececececececep+11983"}},
+     {"\x6<-0x1.cecececececececececececececep+11983L>"}},
 #endif
 };
 const unsigned NF = sizeof(fp_literal_cases) / sizeof(fp_literal_cases[0]);
