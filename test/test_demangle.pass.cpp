@@ -30006,7 +30006,7 @@ void testFPLiterals()
     free(buf);
 }
 
-int main()
+int main(int, char**)
 {
     std::cout << "Testing " << N << " symbols." << std::endl;
     {
@@ -30050,4 +30050,6 @@ int main()
         std::cout << '\n';
     }
 #endif
+
+    return 0;
 }
