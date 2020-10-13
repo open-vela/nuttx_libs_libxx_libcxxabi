@@ -7,11 +7,11 @@
 //===----------------------------------------------------------------------===//
 
 #include "support/timer.h"
-#include <iostream>
-#include <string>
+#include <cassert>
+#include <cstdio>
 #include <cstdlib>
 #include <cxxabi.h>
-#include <cassert>
+#include <string>
 
 // Is long double fp80?  (Only x87 extended double has 64-bit mantissa)
 #define LDBL_FP80 (__LDBL_MANT_DIG__ == 64)
@@ -29901,17 +29901,16 @@ void test()
         char* demang = __cxxabiv1::__cxa_demangle(cases[i][0], buf, &len, &status);
         if (demang == 0 || std::strcmp(demang, cases[i][1]) != 0)
         {
-            std::cout << "ERROR demangling " << cases[i][0] << '\n'
-                      << "expected: " << cases[i][1] << std::endl;
+            std::printf("ERROR demangling %s\nexpected: %s\n", cases[i][0], cases[i][1]);
             if (demang)
             {
-                std::cout << " reality: " << demang << '\n' << std::endl;
+                std::printf(" reality: %s\n", demang);
                 buf = demang;
                 failed = true;
             }
             else
             {
-                std::cout << "Got instead: NULL, " << status << '\n';
+                std::printf("Got instead: NULL, %d\n", status);
                 failed = true;
             }
         }
@@ -29934,7 +29933,8 @@ void test_invalid_cases()
         char* demang = __cxxabiv1::__cxa_demangle(invalid_cases[i], buf, &len, &status);
         if (status != -2)
         {
-            std::cout << invalid_cases[i] << " should be invalid but is not\n" << " got status = " << status << '\n';
+            std::printf("%s should be invalid but is not\n", invalid_cases[i]);
+            std::printf("Got status %d\n", status);
             assert(status == -2);
         }
         else
@@ -29964,8 +29964,8 @@ void test_xfail_cases()
         char* demang = __cxxabiv1::__cxa_demangle(xfail_cases[i], buf, &len, &status);
         if (status != -2)
         {
-            std::cout << xfail_cases[i] << " was documented as xfail but passed\n"
-                      << "got status = " << status << '\n';
+            std::printf("%s was documented as xfail but passed\n", xfail_cases[i]);
+            std::printf("Got status = %d\n", status);
             assert(status == -2);
         }
         else
@@ -29987,8 +29987,8 @@ void testFPLiterals()
         char* demang = __cxxabiv1::__cxa_demangle(fpCase->mangled, buf, &len, &status);
         if (demang == 0)
         {
-            std::cout << fpCase->mangled << " -> " << fpCase->expecting[0] << '\n';
-            std::cout << "Got instead: NULL, " << status << '\n';
+            std::printf("%s -> %s\n", fpCase->mangled, fpCase->expecting[0].c_str());
+            std::printf("Got instead: NULL, %d\n", status);
             assert(false);
             continue;
         }
@@ -29996,8 +29996,8 @@ void testFPLiterals()
         std::string *e_end = fpCase->expecting + NEF;
         if (std::find(e_beg, e_end, demang) == e_end)
         {
-            std::cout << fpCase->mangled << " -> " << fpCase->expecting[0] << '\n';
-            std::cout << "Got instead: " << demang << '\n';
+            std::printf("%s -> %s\n", fpCase->mangled, fpCase->expecting[0].c_str());
+            std::printf("Got instead: %s\n", demang);
             assert(false);
             continue;
         }
@@ -30008,7 +30008,7 @@ void testFPLiterals()
 
 int main(int, char**)
 {
-    std::cout << "Testing " << N << " symbols." << std::endl;
+    std::printf("Testing %d symbols.\n", N);
     {
         timer t;
         test();
