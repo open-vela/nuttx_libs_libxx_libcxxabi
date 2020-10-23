@@ -29800,6 +29800,21 @@ const char* cases[][2] =
     {"_ZN1XIZ1fIiEvOT_EUlS2_DpT0_E_EclIJEEEvDpT_", "void X<void f<int>(int&&)::'lambda'(int&&, auto...)>::operator()<>()"},
     {"_ZZZZN6abcdef9abcdefghi29abcdefabcdefabcdefabcefabcdef27xxxxxxxxxxxxxxxxxxxxxxxxxxxEN4absl8DurationERKNSt3__u12basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEPNS1_19yyyyyyyyyyyyyyyyyyyEENK3$_5clEvENKUlvE_clEvE6zzzzzz", "abcdef::abcdefghi::abcdefabcdefabcdefabcefabcdef::xxxxxxxxxxxxxxxxxxxxxxxxxxx(absl::Duration, std::__u::basic_string<char, std::__u::char_traits<char>, std::__u::allocator<char> > const&, abcdef::abcdefghi::abcdefabcdefabcdefabcefabcdef::yyyyyyyyyyyyyyyyyyy*)::$_5::operator()() const::'lambda'()::operator()() const::zzzzzz"},
 
+    // C++2a class type non-type template parameters:
+    {"_Z1fIXtl1BLPi0ELi1EEEEvv", "void f<B{(int*)0, 1}>()"},
+    {"_Z1fIXtl1BLPi32EEEEvv", "void f<B{(int*)32}>()"},
+    {"_Z1fIXtl1BrcPiLi0EEEEvv", "void f<B{reinterpret_cast<int*>(0)}>()"},
+    {"_Z1fIXtl1BadsoiL_Z6nestedE_EEEEvv", "void f<B{&(nested.<int at offset 0>)}>()"},
+    {"_Z1fIXtl1BadsoiL_Z6nestedE16_0pEEEEvv", "void f<B{&(nested.<int at offset 16>)}>()"},
+    {"_Z1fIXtl2BRsoiL_Z7derivedE4EEEEvv", "void f<BR{derived.<int at offset 4>}>()"},
+    {"_Z1fIXtl1BcvPiplcvPcadL_Z7derivedELl16EEEEvv", "void f<B{(int*)(((char*)(&(derived))) + (16l))}>()"},
+    {"_Z1fIXtl1CadsoKiL_Z7derivedE4EEEEvv", "void f<C{&(derived.<int const at offset 4>)}>()"},
+    {"_Z1fIXtl1DLM7DerivedKi0ELi1EEEEvv", "void f<D{(int const Derived::*)0, 1}>()"},
+    // FIXME: This is not valid pointer-to-member syntax.
+    {"_Z1fIXtl1DmcM7DerivedKiadL_ZN11MoreDerived1zEEn8EEEEvv", "void f<D{(int const Derived::*)(&(MoreDerived::z))}>()"},
+    {"_Z1fIXtl1Edi1nLi42EEEEvv", "void f<E{.n = 42}>()"},
+    {"_ZTAXtl1StlA32_cLc104ELc101ELc108ELc108ELc111ELc32ELc119ELc111ELc114ELc108ELc100EEEE", "template parameter object for S{char [32]{(char)104, (char)101, (char)108, (char)108, (char)111, (char)32, (char)119, (char)111, (char)114, (char)108, (char)100}}"},
+
     // FIXME: This is wrong; the S2_ backref should expand to OT_ and then to
     // "double&&". But we can't cope with a substitution that represents a
     // different type the node it is a substitute for.
