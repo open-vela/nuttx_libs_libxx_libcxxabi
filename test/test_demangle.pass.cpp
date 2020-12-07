@@ -29776,8 +29776,18 @@ const char* cases[][2] =
     // Vendor extension types are substitution candidates.
     {"_Z1fu3fooS_", "f(foo, foo)"},
 
-    {"_ZN3FooIXu8__uuidofzdeL_Z3sucEEEC1Ev", "Foo<__uuidof(*(suc))>::Foo()"},
-    {"_ZN3FooIXu8__uuidoft13SomeUUIDClassEEC1Ev", "Foo<__uuidof(SomeUUIDClass)>::Foo()"},
+    // alignof with type and expression, and __alignof__ with the same.
+    {"_Z2f1IiEvDTatT_E", "void f1<int>(decltype(alignof (int)))"},
+    {"_Z2f3IiEvDTazcvT_Li0EE", "void f3<int>(decltype(alignof ((int)(0))))"},
+    {"_Z2f2IiEvDTu11__alignof__T_EE", "void f2<int>(decltype(__alignof__(int)))"},
+    {"_Z2f4IiEvDTu11__alignof__XcvT_Li0EEEE", "void f4<int>(decltype(__alignof__((int)(0))))"},
+
+    // Legacy nonstandard mangling for __uuidof.
+    {"_Z15test_uuidofTypeI10TestStructEvDTu8__uuidoftT_E", "void test_uuidofType<TestStruct>(decltype(__uuidof(TestStruct)))"},
+    {"_Z15test_uuidofExprI9HasMemberEvDTu8__uuidofXsrT_6memberEEE", "void test_uuidofExpr<HasMember>(decltype(__uuidof(HasMember::member)))"},
+    // Current __uuidof mangling using vendor extended expression.
+    {"_Z15test_uuidofTypeI10TestStructEvDTu8__uuidofT_EE", "void test_uuidofType<TestStruct>(decltype(__uuidof(TestStruct)))"},
+    {"_Z15test_uuidofExprI9HasMemberEvDTu8__uuidofXsrT_6memberEEE", "void test_uuidofExpr<HasMember>(decltype(__uuidof(HasMember::member)))"},
 
     // C++2a char8_t:
     {"_ZTSPDu", "typeinfo name for char8_t*"},
