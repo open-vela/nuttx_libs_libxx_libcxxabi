@@ -29843,6 +29843,10 @@ const char* cases[][2] =
     {"_Z1fIL4Enumn1EEvv", "void f<(Enum)-1>()"},
 
     {"_ZN1A1gIiEEDTcldtptfpT1b1fIT_EEEv", "decltype(this->b.f<int>()) A::g<int>()"},
+
+    // Optional template-args for vendor extended type qualifier.
+    // See https://bugs.llvm.org/show_bug.cgi?id=48009.
+    {"_Z3fooILi79EEbU7_ExtIntIXT_EEi", "bool foo<79>(int _ExtInt<79>)"},
 };
 
 const unsigned N = sizeof(cases) / sizeof(cases[0]);
