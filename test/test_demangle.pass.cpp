@@ -29601,7 +29601,7 @@ const char* cases[][2] =
     {"_Z1fPU11objcproto1A11objc_object", "f(id<A>)"},
     {"_Z1fPKU11objcproto1A7NSArray", "f(NSArray<A> const*)"},
     {"_ZNK1AIJ1Z1Y1XEEcv1BIJDpPT_EEIJS2_S1_S0_EEEv", "A<Z, Y, X>::operator B<X*, Y*, Z*><X, Y, Z>() const"},
-    {"_ZNK3Ncr6Silver7Utility6detail12CallOnThreadIZ53-[DeploymentSetupController handleManualServerEntry:]E3$_5EclIJEEEDTclclL_ZNS2_4getTIS4_EERT_vEEspclsr3stdE7forwardIT_Efp_EEEDpOSA_", "decltype(-[DeploymentSetupController handleManualServerEntry:]::$_5& Ncr::Silver::Utility::detail::getT<-[DeploymentSetupController handleManualServerEntry:]::$_5>()()(std::forward<-[DeploymentSetupController handleManualServerEntry:]::$_5>(fp)...)) Ncr::Silver::Utility::detail::CallOnThread<-[DeploymentSetupController handleManualServerEntry:]::$_5>::operator()<>(-[DeploymentSetupController handleManualServerEntry:]::$_5&&...) const"},
+    {"_ZNK3Ncr6Silver7Utility6detail12CallOnThreadIZ53-[DeploymentSetupController handleManualServerEntry:]E3$_5EclIJEEEDTclclL_ZNS2_4getTIS4_EERT_vEEspclsr3stdE7forwardIT_Efp_EEEDpOSA_", "decltype(-[DeploymentSetupController handleManualServerEntry:]::$_5& Ncr::Silver::Utility::detail::getT<-[DeploymentSetupController handleManualServerEntry:]::$_5>()()()) Ncr::Silver::Utility::detail::CallOnThread<-[DeploymentSetupController handleManualServerEntry:]::$_5>::operator()<>() const"},
     {"_Zli2_xy", "operator\"\" _x(unsigned long long)"},
     {"_Z1fIiEDcT_", "decltype(auto) f<int>(int)"},
     {"_ZZ4testvEN1g3fooE5Point", "test()::g::foo(Point)"},
@@ -29847,6 +29847,9 @@ const char* cases[][2] =
     // Optional template-args for vendor extended type qualifier.
     // See https://bugs.llvm.org/show_bug.cgi?id=48009.
     {"_Z3fooILi79EEbU7_ExtIntIXT_EEi", "bool foo<79>(int _ExtInt<79>)"},
+
+    {"_ZN3xxx3yyyIvNS_1AILm0EEEZNS_2bb2cc2ddILNS_1eE1EEEvRKNS_1fERKNS_1g1hINS_1iEEERKNS_1jEfRKNS_1kEiPhEUlvE_JEEEvT1_DpT2_", "void xxx::yyy<void, xxx::A<0ul>, void xxx::bb::cc::dd<(xxx::e)1>(xxx::f const&, xxx::g::h<xxx::i> const&, xxx::j const&, float, xxx::k const&, int, unsigned char*)::'lambda'()>(void xxx::bb::cc::dd<(xxx::e)1>(xxx::f const&, xxx::g::h<xxx::i> const&, xxx::j const&, float, xxx::k const&, int, unsigned char*)::'lambda'())"},
+
 };
 
 const unsigned N = sizeof(cases) / sizeof(cases[0]);
