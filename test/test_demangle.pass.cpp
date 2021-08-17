@@ -9,6 +9,11 @@
 // The demangler does not pass all these tests with the system dylibs on macOS.
 // XFAIL: use_system_cxx_lib && target={{.+}}-apple-macosx10.{{9|10|11|12|13|14|15}}
 
+// https://llvm.org/PR51407 was not fixed in some previously-released
+// demanglers, which causes them to run into the infinite loop.
+// UNSUPPORTED: use_system_cxx_lib && target={{.+}}-apple-macosx10.{{9|10|11|12|13|14|15}}
+// UNSUPPORTED: use_system_cxx_lib && target={{.+}}-apple-macosx11.0
+
 #include "support/timer.h"
 #include <cassert>
 #include <cstdio>
@@ -29844,6 +29849,9 @@ const char* cases[][2] =
 
     {"_ZN3xxx3yyyIvNS_1AILm0EEEZNS_2bb2cc2ddILNS_1eE1EEEvRKNS_1fERKNS_1g1hINS_1iEEERKNS_1jEfRKNS_1kEiPhEUlvE_JEEEvT1_DpT2_", "void xxx::yyy<void, xxx::A<0ul>, void xxx::bb::cc::dd<(xxx::e)1>(xxx::f const&, xxx::g::h<xxx::i> const&, xxx::j const&, float, xxx::k const&, int, unsigned char*)::'lambda'()>(void xxx::bb::cc::dd<(xxx::e)1>(xxx::f const&, xxx::g::h<xxx::i> const&, xxx::j const&, float, xxx::k const&, int, unsigned char*)::'lambda'())"},
 
+    // This should be invalid, but it is currently not recognized as such
+    // See https://llvm.org/PR51407
+    {"_Zcv1BIRT_EIS1_E", "operator B<><>"},
 };
 
 const unsigned N = sizeof(cases) / sizeof(cases[0]);
