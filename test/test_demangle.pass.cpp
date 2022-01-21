@@ -29936,6 +29936,11 @@ const char* invalid_cases[] =
     "FSiIJEENT_IoE ",
     "ZTVSiIZTVSiIZTVSiIZTVSiINIJEET_T_T_T_T_ ",
     "Ana_T_E_T_IJEffffffffffffffersfffffrsrsffffffbgE",
+
+    "_ZN3TPLS_E",
+    "_ZN3CLSIiEIiEE",
+    "_ZN3CLSDtLi0EEE",
+    "_ZN3CLSIiEEvNS_T_Ev",
 };
 
 const unsigned NI = sizeof(invalid_cases) / sizeof(invalid_cases[0]);
