@@ -29855,6 +29855,8 @@ const char* cases[][2] =
     // This should be invalid, but it is currently not recognized as such
     // See https://llvm.org/PR51407
     {"_Zcv1BIRT_EIS1_E", "operator B<><>"},
+
+    {"_Z3TPLIiET_S0_", "int TPL<int>(int)"},
 };
 
 const unsigned N = sizeof(cases) / sizeof(cases[0]);
