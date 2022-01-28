@@ -29856,6 +29856,8 @@ const char* cases[][2] =
     // See https://llvm.org/PR51407
     {"_Zcv1BIRT_EIS1_E", "operator B<><>"},
 
+    {"_ZN2FnIXgs4BaseEX4BaseEEEvv","void Fn<::Base, Base>()"},
+    
     {"_Z3TPLIiET_S0_", "int TPL<int>(int)"},
 };
 
