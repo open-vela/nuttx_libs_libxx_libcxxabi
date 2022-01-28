@@ -29858,6 +29858,11 @@ const char* cases[][2] =
 
     {"_ZN2FnIXgs4BaseEX4BaseEEEvv","void Fn<::Base, Base>()"},
     
+    {"_ZN2FnIXgsnw_iEEXna_ipiLi4EEEEEvv", "void Fn<::new int, new[] int(4)>()"},
+    {"_ZN2FnIXnwLj4E_iEEXgsnaLj4E_ipiLi4EEEEEvv", "void Fn<new(4u) int, ::new[](4u) int(4)>()"},
+    {"_ZN2FnIXgsdlLi4EEXdaLi4EEEEvv", "void Fn<::delete 4, delete[] 4>()"},
+    {"_ZN2FnIXdlLj4EEXgsdaLj4EEEEvv", "void Fn<delete 4u, ::delete[] 4u>()"},
+
     {"_Z3TPLIiET_S0_", "int TPL<int>(int)"},
 };
 
