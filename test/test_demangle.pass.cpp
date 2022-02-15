@@ -15,6 +15,7 @@
 // UNSUPPORTED: use_system_cxx_lib && target={{.+}}-apple-macosx11.0
 
 #include "support/timer.h"
+#include <algorithm>
 #include <cassert>
 #include <cstdio>
 #include <cstdlib>
