@@ -29963,6 +29963,8 @@ const char* cases[][2] =
      "void Partial<1, 2>::foldr<3, 4>(A<1 + (2 + ((3, 4) + ... + (1 + (2 + ((3, 4) + ...)))))>)"},
     {"_ZN7PartialIJLi1ELi2EEE5foldrIJLi3ELi4EEEEv1AIXplplLi1ELi2EfRplT_plplLi1ELi2EflplT_EE",
      "void Partial<1, 2>::foldr<3, 4>(A<1 + 2 + ((3, 4) + ... + (1 + 2 + (... + (3, 4))))>)"},
+    {"_Z1fIXfLpm1x1yEEvv", "void f<(x ->* ... ->* (y...))>()"},
+    {"_Z1fIXfLds1x1yEEvv", "void f<(x .* ... .* (y...))>()"},
 
     // reference collapsing:
     {"_Z1fIR1SEiOT_", "int f<S&>(S&)"},
@@ -30172,6 +30174,9 @@ const char* invalid_cases[] =
 
     "_ZN1fIiEEvNTUt_E",
     "_ZNDTUt_Ev",
+
+    "_Z1fIXfLpt1x1yEEvv",
+    "_Z1fIXfLdt1x1yEEvv",
 
     "_ZN1fIXawLi0EEEEvv",
 
