@@ -29865,6 +29865,8 @@ const char* cases[][2] =
     {"_ZN2FnIXdlLj4EEXgsdaLj4EEEEvv", "void Fn<delete 4u, ::delete[] 4u>()"},
 
     {"_Z3TPLIiET_S0_", "int TPL<int>(int)"},
+
+    {"_ZN1XawEv", "X::operator co_await()"},
 };
 
 const unsigned N = sizeof(cases) / sizeof(cases[0]);
@@ -29950,6 +29952,8 @@ const char* invalid_cases[] =
 
     "_ZN1fIiEEvNTUt_E",
     "_ZNDTUt_Ev",
+
+    "_ZN1fIXawLi0EEEEvv",
 };
 
 const unsigned NI = sizeof(invalid_cases) / sizeof(invalid_cases[0]);
