@@ -29629,7 +29629,7 @@ const char* cases[][2] =
     {"_ZN5Casts8implicitILj4EEEvPN9enable_ifIXrMT_Li4EEvE4typeE",
      "void Casts::implicit<4u>(enable_if<4u %= 4, void>::type*)"},
     {"_ZN5Casts8implicitILj4EEEvPN9enable_ifIXrsT_Li4EEvE4typeE",
-     "void Casts::implicit<4u>(enable_if<4u >> 4, void>::type*)"},
+     "void Casts::implicit<4u>(enable_if<(4u >> 4), void>::type*)"},
     {"_ZN5Casts8implicitILj4EEEvPN9enable_ifIXrST_Li4EEvE4typeE",
      "void Casts::implicit<4u>(enable_if<4u >>= 4, void>::type*)"},
     {"_Z1fPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP1XS13_S12_S11_S10_SZ_SY_SX_SW_SV_SU_ST_SS_SR_SQ_SP_SO_SN_SM_SL_SK_SJ_"
