@@ -30172,6 +30172,7 @@ const char* invalid_cases[] =
     "_ZWDC3FOOEv",
     "_ZGI3Foo",
     "_ZGIW3Foov",
+    "W1x",
 };
 
 const unsigned NI = sizeof(invalid_cases) / sizeof(invalid_cases[0]);
