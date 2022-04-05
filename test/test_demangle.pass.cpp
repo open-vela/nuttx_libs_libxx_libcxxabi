@@ -30078,6 +30078,8 @@ const char* cases[][2] =
     {"_ZGIW3Foo", "initializer for module Foo"},
     {"_ZGIW3FooW3Bar", "initializer for module Foo.Bar"},
     {"_ZGIW3FooWP3BarW3Baz", "initializer for module Foo:Bar.Baz"},
+    {"_ZW1ML4Oink", "Oink@M"},
+    {"_ZW1ML1fi", "f@M(int)"},
 };
 
 const unsigned N = sizeof(cases) / sizeof(cases[0]);
