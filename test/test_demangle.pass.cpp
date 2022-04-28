@@ -644,6 +644,7 @@ const char* cases[][2] =
     {"_ZNSs4_Rep20_S_empty_rep_storageE", "std::string::_Rep::_S_empty_rep_storage"},
     {"_ZZN23ImageLoaderMachOClassic26bindIndirectSymbolPointersERKN11ImageLoader11LinkContextEbbE13alreadyWarned", "ImageLoaderMachOClassic::bindIndirectSymbolPointers(ImageLoader::LinkContext const&, bool, bool)::alreadyWarned"},
     {"_ZN12_GLOBAL__N_115emergency_mutexE", "(anonymous namespace)::emergency_mutex"},
+    {"_Z1fIDnLDn0EEvv", "void f<std::nullptr_t, nullptr>()"},
 
     // clang
 
