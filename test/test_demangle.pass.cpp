@@ -19,6 +19,7 @@
 #include <cassert>
 #include <cstdio>
 #include <cstdlib>
+#include <cstring>
 #include <cxxabi.h>
 #include <string>
 
@@ -30051,7 +30052,7 @@ const char* cases[][2] =
     {"_Zcv1BIRT_EIS1_E", "operator B<><>"},
 
     {"_ZN2FnIXgs4BaseEX4BaseEEEvv","void Fn<::Base, Base>()"},
-    
+
     {"_ZN2FnIXgsnw_iEEXna_ipiLi4EEEEEvv", "void Fn<::new int, new[] int(4)>()"},
     {"_ZN2FnIXnwLj4E_iEEXgsnaLj4E_ipiLi4EEEEEvv", "void Fn<new(4u) int, ::new[](4u) int(4)>()"},
     {"_ZN2FnIXgsdlLi4EEXdaLi4EEEEvv", "void Fn<::delete 4, delete[] 4>()"},
