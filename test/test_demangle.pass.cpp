@@ -30112,6 +30112,8 @@ const char* cases[][2] =
      "::basic_ostream()"},
     {"_ZNSsC1Ev", "std::basic_string<char, std::char_traits<char>,"
      " std::allocator<char>>::basic_string()"},
+    {"_ZN1SB8ctor_tagC2Ev", "S[abi:ctor_tag]::S()"},
+    {"_ZN1SB8ctor_tagD2Ev", "S[abi:ctor_tag]::~S()"},
 };
 
 const unsigned N = sizeof(cases) / sizeof(cases[0]);
