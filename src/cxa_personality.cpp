@@ -1174,7 +1174,7 @@ __cxa_call_unexpected(void* arg)
     std::unexpected_handler u_handler;
     std::terminate_handler t_handler;
     __cxa_exception* old_exception_header = 0;
-    int64_t ttypeIndex;
+    int64_t ttypeIndex = 0;
     const uint8_t* lsda;
     uintptr_t base = 0;
 
