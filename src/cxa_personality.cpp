@@ -1070,7 +1070,7 @@ __gxx_personality_v0(_Unwind_State state,
 
     // Check the undocumented force unwinding behavior
     bool is_force_unwinding = state & _US_FORCE_UNWIND;
-    state &= ~_US_FORCE_UNWIND;
+    state = (_Unwind_State)(state & ~_US_FORCE_UNWIND);
 
     scan_results results;
     switch (state) {
