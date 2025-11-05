@@ -59,7 +59,7 @@ private:
 };
 
 static const size_t HEAP_SIZE = 512;
-char heap[HEAP_SIZE] __attribute__((aligned));
+char heap[HEAP_SIZE] __attribute__((aligned(alignof(std::max_align_t))));
 
 typedef unsigned short heap_offset;
 typedef unsigned short heap_size;
@@ -75,11 +75,11 @@ struct heap_node {
 // All pointers returned by fallback_malloc must be at least aligned
 // as RequiredAligned. Note that RequiredAlignment can be greater than
 // alignof(std::max_align_t) on 64 bit systems compiling 32 bit code.
-struct FallbackMaxAlignType {
-} __attribute__((aligned));
+struct alignas(alignof(std::max_align_t)) FallbackMaxAlignType {
+};
 const size_t RequiredAlignment = alignof(FallbackMaxAlignType);
 
-static_assert(alignof(FallbackMaxAlignType) % sizeof(heap_node) == 0,
+static_assert(alignof(struct FallbackMaxAlignType) % sizeof(heap_node) == 0,
               "The required alignment must be evenly divisible by the sizeof(heap_node)");
 
 // The number of heap_node's that can fit in a chunk of memory with the size
@@ -252,7 +252,7 @@ size_t print_free_list() {
 
 namespace __cxxabiv1 {
 
-struct __attribute__((aligned)) __aligned_type {};
+struct alignas(alignof(std::max_align_t)) __aligned_type {};
 
 void* __aligned_malloc_with_fallback(size_t size) {
 #if defined(_WIN32)
