@@ -18,7 +18,11 @@
 #define __has_attribute(_attribute_) 0
 #endif
 
-#if defined(__clang__)
+#if defined(__TASKING__)
+#  define _LIBCXXABI_COMPILER_TASKING
+#  define constinit
+#  define __thread thread_local
+#elif defined(__clang__)
 #  define _LIBCXXABI_COMPILER_CLANG
 #  ifndef __apple_build_version__
 #    define _LIBCXXABI_CLANG_VER (__clang_major__ * 100 + __clang_minor__)
@@ -94,6 +98,8 @@
 #    define _LIBCXXABI_NO_EXCEPTIONS
 #  endif
 #elif defined(_LIBCXXABI_COMPILER_GCC) && !defined(__EXCEPTIONS)
+#  define _LIBCXXABI_NO_EXCEPTIONS
+#elif defined(_LIBCXXABI_COMPILER_TASKING) && !defined(__EXCEPTIONS)
 #  define _LIBCXXABI_NO_EXCEPTIONS
 #endif
 
