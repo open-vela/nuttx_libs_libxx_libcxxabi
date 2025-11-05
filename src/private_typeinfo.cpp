@@ -620,9 +620,15 @@ bool __pointer_to_member_type_info::can_catch_nested(
 // Else return nullptr.
 
 extern "C" _LIBCXXABI_FUNC_VIS void *
+#ifndef _LIBCXXABI_COMPILER_TASKING
 __dynamic_cast(const void *static_ptr, const __class_type_info *static_type,
                const __class_type_info *dst_type,
                std::ptrdiff_t src2dst_offset) {
+#else
+__dynamic_cast(void *static_ptr, const void *static_type,
+               const void *dst_type,
+               int src2dst_offset) {
+#endif
     // Possible future optimization:  Take advantage of src2dst_offset
 
     // Get (dynamic_ptr, dynamic_type) from static_ptr
@@ -652,10 +658,11 @@ __dynamic_cast(const void *static_ptr, const __class_type_info *static_type,
     //    be returned.
     const void* dst_ptr = 0;
     // Initialize info struct for this search.
-    __dynamic_cast_info info = {dst_type, static_ptr, static_type, src2dst_offset, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,};
+    __dynamic_cast_info info = {(const __class_type_info *)dst_type, static_ptr, (const __class_type_info *)static_type,
+                                src2dst_offset, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,};
 
     // Find out if we can use a giant short cut in the search
-    if (is_equal(dynamic_type, dst_type, false))
+    if (is_equal(dynamic_type, (const __class_type_info *)dst_type, false))
     {
         // We're downcasting from src_type to the complete object's dynamic
         //   type. This is a really hot path that can be further optimized
@@ -733,7 +740,8 @@ __dynamic_cast(const void *static_ptr, const __class_type_info *static_type,
             if (reinterpret_cast<std::intptr_t>(dst_ptr_to_static) >= reinterpret_cast<std::intptr_t>(dynamic_ptr))
             {
                 // Try to search a path from dynamic_type to dst_type.
-                __dynamic_cast_info dynamic_to_dst_info = {dynamic_type, dst_ptr_to_static, dst_type, src2dst_offset};
+                __dynamic_cast_info dynamic_to_dst_info = {dynamic_type, dst_ptr_to_static, (const __class_type_info *)dst_type,
+                                                           src2dst_offset};
                 dynamic_to_dst_info.number_of_dst_type = 1;
                 dynamic_type->search_above_dst(&dynamic_to_dst_info, dynamic_ptr, dynamic_ptr, public_path, false);
                 if (dynamic_to_dst_info.path_dst_ptr_to_static_ptr != unknown) {
