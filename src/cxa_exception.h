@@ -15,6 +15,10 @@
 
 #include <exception> // for std::unexpected_handler and std::terminate_handler
 #include "cxxabi.h"
+
+// skip cxa_exception.h when _LIBCXXABI_NO_EXCEPTIONS is present
+#ifndef _LIBCXXABI_NO_EXCEPTIONS
+
 #include "unwind.h"
 
 namespace __cxxabiv1 {
@@ -160,5 +164,7 @@ extern "C" _LIBCXXABI_FUNC_VIS void * __cxa_allocate_dependent_exception ();
 extern "C" _LIBCXXABI_FUNC_VIS void __cxa_free_dependent_exception (void * dependent_exception);
 
 }  // namespace __cxxabiv1
+
+#endif // _LIBCXXABI_NO_EXCEPTIONS
 
 #endif // _CXA_EXCEPTION_H
